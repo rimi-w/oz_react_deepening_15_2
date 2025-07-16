@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import BoardDetailModal from './BoardDetailModal';
 import BoardConfirmModal from './BoardConfirmModal';
 import BoardEditModal from './BoardEditModal';
+import { useBoardStore } from '../store';
 
 const typeToKorean = (type) => {
   switch (type) {
@@ -17,14 +18,14 @@ const typeToKorean = (type) => {
 };
 
 const Boards = ({ type }) => {
-  const data = [];
+  const { data } = useBoardStore();
   const filteredData = data.filter((item) => item.type === type);
   const [item, setItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [confirmIsOpen, setConfirmIsOpen] = useState(false);
   const [editIsOpen, setEditIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
-
+  console.log(data)
   // Detail Modal
   const handleModalOpen = (item) => {
     setItem(item);
